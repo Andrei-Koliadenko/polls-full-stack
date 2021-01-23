@@ -35,7 +35,7 @@
 *.ipr
 .idea/
 
-# eclipse project file
+# Eclipse project file
 .settings/
 .classpath
 .project
@@ -60,31 +60,28 @@ pom.xml.tag
 # Maven 
 target/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# dependencies
+# Dependencies
 /client/node_modules
 /.pnp
 .pnp.js
 
-# testing
+# Testing
 /coverage
 
-# production
+# Production
 /client/build
 
-# outdated components
-/client/UNUSED
-
-# misc
+# Misc
 .DS_Store
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-package-lock.json
+# Eslintcache
 .eslintcache
 
 npm-debug.log*
