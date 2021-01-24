@@ -30,4 +30,9 @@ public class PollsCreationRestController {
 	SimplePollAndVotesDto vote(@RequestBody @Valid VoteDto voteDto) {
 		return service.addVote(voteDto);
 	}
+	
+	@GetMapping(GET_POLL)
+	SimplePollAndVotesDto getPoll(@RequestParam(name = "id") String id) {
+		return service.getPoll(id);
+	}
 }

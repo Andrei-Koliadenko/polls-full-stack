@@ -6,5 +6,5 @@ public interface PollsCreationApiConstants {
 	String ADD_VOTE = "/poll/{id}/vote";
 	/************************************************************************/
 	// Constants for getting
-	String GET_POLL = "/poll/{id}";	
+	String GET_POLL = "/poll";	
 }

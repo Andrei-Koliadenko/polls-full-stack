@@ -51,4 +51,14 @@ public class PollsCreationServiceMongoImpl implements PollsCreationService {
 		}
 	}
 
+	@Override
+	public SimplePollAndVotesDto getPoll(String pollId) {
+		Poll poll = pollsRepo.findById(pollId).orElse(null);
+		if (poll != null) {
+			return new SimplePollAndVotesDto(poll);
+		} else {
+			throw new NotFoundException(String.format("Sorry, but there is no poll with id %s!", pollId));
+		}
+	}
+
 }
