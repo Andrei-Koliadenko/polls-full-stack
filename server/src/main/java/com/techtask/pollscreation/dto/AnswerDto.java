@@ -1,6 +1,6 @@
 package com.techtask.pollscreation.dto;
 
-public class Answer {
+public class AnswerDto {
 	String answer;
 	int votesCount;
 
@@ -20,12 +20,12 @@ public class Answer {
 		this.votesCount = votesCount;
 	}
 
-	public Answer(String answer, int votesCount) {
+	public AnswerDto(String answer, int votesCount) {
 		this.answer = answer;
 		this.votesCount = votesCount;
 	}
 
-	public Answer() {
+	public AnswerDto() {
 
 	}
 	
