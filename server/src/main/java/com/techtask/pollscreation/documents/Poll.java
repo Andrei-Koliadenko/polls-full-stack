@@ -10,7 +10,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.techtask.pollscreation.dto.Answer;
+import com.techtask.pollscreation.dto.AnswerDto;
 import com.techtask.pollscreation.dto.SimplePollDto;
 
 @Document(collection = "polls")
@@ -22,7 +22,7 @@ public class Poll {
 	@NotBlank
 	String question;
 	@NotNull
-	Answer[] answers;
+	AnswerDto[] answers;
 	@PositiveOrZero
 	int totalVotes;
 
@@ -50,11 +50,11 @@ public class Poll {
 		this.question = question;
 	}
 
-	public Answer[] getAnswers() {
+	public AnswerDto[] getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(Answer[] answers) {
+	public void setAnswers(AnswerDto[] answers) {
 		this.answers = answers;
 	}
 
@@ -72,7 +72,7 @@ public class Poll {
 				+ Arrays.toString(answers) + ", totalVotes=" + totalVotes + "]";
 	}
 
-	public Poll(String _id, @NotBlank String name, @NotBlank String question, @NotNull Answer[] answers,
+	public Poll(String _id, @NotBlank String name, @NotBlank String question, @NotNull AnswerDto[] answers,
 			@PositiveOrZero int totalVotes) {
 		super();
 		this._id = _id;
@@ -91,10 +91,10 @@ public class Poll {
 		this.name = poll.getName();
 		this.question = poll.getQuestion();
 		String[] variants = poll.getVariants();
-		this.answers = new Answer[variants.length];
+		this.answers = new AnswerDto[variants.length];
 		for (int i = 0; i < variants.length; i++) {
-			Answer answer = new Answer(variants[i], 0);
-			this.answers[i] = answer;
+			AnswerDto answerDto = new AnswerDto(variants[i], 0);
+			this.answers[i] = answerDto;
 		}
 		this.totalVotes = 0;
 	}
