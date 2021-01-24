@@ -4,4 +4,5 @@ interface Poll {
     question: string;
     answers: Answer[];
 }
+
 export default Poll
