@@ -12,7 +12,7 @@ public class SimplePollAndVotesDto extends PollBaseDto {
 	@NotBlank
 	String poll_id;
 	@NotNull
-	AnswerDto[] answerDtos;
+	AnswerDto[] answers;
 	@PositiveOrZero
 	int totalVotes;
 
@@ -24,12 +24,12 @@ public class SimplePollAndVotesDto extends PollBaseDto {
 		this.poll_id = poll_id;
 	}
 
-	public AnswerDto[] getAnswerDtos() {
-		return answerDtos;
+	public AnswerDto[] getAnswers() {
+		return answers;
 	}
 
-	public void setAnswerDtos(AnswerDto[] answerDtos) {
-		this.answerDtos = answerDtos;
+	public void setAnswers(AnswerDto[] answers) {
+		this.answers = answers;
 	}
 
 	public int getTotalVotes() {
@@ -42,15 +42,15 @@ public class SimplePollAndVotesDto extends PollBaseDto {
 
 	@Override
 	public String toString() {
-		return "SimplePollDtoWithId [poll_id=" + poll_id + ", answerDtos=" + Arrays.toString(answerDtos)
+		return "SimplePollDtoWithId [poll_id=" + poll_id + ", answers=" + Arrays.toString(answers)
 				+ ", totalVotes=" + totalVotes + ", name=" + name + ", question=" + question + "]";
 	}
 
 	public SimplePollAndVotesDto(@NotBlank String name, @NotBlank String question, @NotBlank String poll_id,
-			@NotNull AnswerDto[] answerDtos, @PositiveOrZero int totalVotes) {
+			@NotNull AnswerDto[] answers, @PositiveOrZero int totalVotes) {
 		super(name, question);
 		this.poll_id = poll_id;
-		this.answerDtos = answerDtos;
+		this.answers = answers;
 		this.totalVotes = totalVotes;
 	}
 
@@ -61,7 +61,7 @@ public class SimplePollAndVotesDto extends PollBaseDto {
 	public SimplePollAndVotesDto(Poll poll) {
 		super(poll.getName(), poll.getQuestion());
 		this.poll_id = poll.get_id();
-		this.answerDtos = poll.getAnswers();
+		this.answers = poll.getAnswers();
 		this.totalVotes = poll.getTotalVotes();
 	}
 
