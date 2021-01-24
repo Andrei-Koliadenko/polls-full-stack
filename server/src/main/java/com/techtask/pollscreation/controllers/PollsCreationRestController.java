@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.techtask.pollscreation.dto.SimplePollDto;
-import com.techtask.pollscreation.dto.SimplePollDtoWithId;
+import com.techtask.pollscreation.dto.SimplePollAndVotesDto;
 import com.techtask.pollscreation.dto.VoteDto;
 import com.techtask.pollscreation.services.api.PollsCreationService;
 
@@ -27,7 +27,7 @@ public class PollsCreationRestController {
 	}
 	
 	@PostMapping(ADD_VOTE)
-	SimplePollDtoWithId vote(@RequestBody @Valid VoteDto voteDto) {
+	SimplePollAndVotesDto vote(@RequestBody @Valid VoteDto voteDto) {
 		return service.addVote(voteDto);
 	}
 }
