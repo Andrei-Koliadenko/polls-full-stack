@@ -1,6 +1,6 @@
 interface SimplePoll {
     name: string;
     question: string;
-    answers: string[];
+    variants: string[];
 }
 export default SimplePoll

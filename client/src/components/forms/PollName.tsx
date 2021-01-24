@@ -26,9 +26,9 @@ const PollName: FC<Props> = (props: Props) => {
                     onChange={(event: ChangeEvent<HTMLInputElement>) => props.setPollForm({
                         name: event.target.value,
                         question: props.pollForm.question,
-                        answers: props.pollForm.answers,
+                        variants: props.pollForm.variants,
                     })}
-                    inputProps={{style: {fontSize: 25}}}
+                    inputProps={{style: {fontSize: 20}}}
                     InputLabelProps={{style: {fontSize: 20}}}
                     FormHelperTextProps={{style: {fontSize: 15}}}
                 />

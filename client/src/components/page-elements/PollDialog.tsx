@@ -57,6 +57,7 @@ const PollDialog: FC<Props> = (props: Props) => {
     const [pollNameErrorMessage, setPollNameErrorMessage] = useState<string>("");
     const [pollNameError, setPollNameError] = useState<boolean>(false);
     const [pollQuestionAnswersErrorMessage, setPollQuestionAnswersErrorMessage] = useState<string>("");
+    const [notEnoughAnswersMessage, setNotEnoughAnswersMessage] = useState<string>("");
     const [pollQuestionAnswersError, setPollQuestionAnswersError] = useState<boolean>(false);
     const [pollCreationResultMessage, setPollCreationResultMessage] = useState<string>("");
     const steps = getSteps();
@@ -64,9 +65,9 @@ const PollDialog: FC<Props> = (props: Props) => {
     const [pollForm, setPollForm] = useState<SimplePoll>({
         name: "",
         question: "",
-        answers: ["", ""]
+        variants: ["", ""]
     })
-
+    const filteredAnswers: string[] = pollForm.variants.filter(Boolean);
 
     function getStepContent(step: number) {
         switch (step) {
@@ -74,9 +75,11 @@ const PollDialog: FC<Props> = (props: Props) => {
                 return <PollName pollForm={pollForm} setPollForm={setPollForm} error={pollNameError}
                                  pollNameErrorMessage={pollNameErrorMessage}/>;
             case 1:
-                return <PollQuestionAnswers pollForm={pollForm} setPollForm={setPollForm}
+                return <PollQuestionAnswers pollForm={pollForm}
+                                            setPollForm={setPollForm}
                                             error={pollQuestionAnswersError}
-                                            pollQuestionErrorMessage={pollQuestionAnswersErrorMessage}/>;
+                                            pollQuestionErrorMessage={pollQuestionAnswersErrorMessage}
+                                            notEnoughAnswersMessage={notEnoughAnswersMessage}/>;
             case 2:
                 return <PollCard poll={pollForm}/>
             case 3:
@@ -95,7 +98,10 @@ const PollDialog: FC<Props> = (props: Props) => {
             setPollQuestionAnswersErrorMessage("")
             setPollQuestionAnswersError(false)
         }
-    }, [pollForm.name, pollForm.question])
+        if (filteredAnswers.length >= 2) {
+            setNotEnoughAnswersMessage("");
+        }
+    }, [pollForm.name.length, pollForm.question.length, filteredAnswers.length])
 
     const handleNext = async () => {
         switch (activeStep) {
@@ -112,6 +118,16 @@ const PollDialog: FC<Props> = (props: Props) => {
                     setPollQuestionAnswersError(true)
                     return;
                 }
+               // const filteredAnswers: string[] = pollForm.answers.filter(Boolean);
+                if (filteredAnswers.length < 2) {
+                    setNotEnoughAnswersMessage("At least 2 answers are required!")
+                    return;
+                }
+                setPollForm({
+                    name: pollForm.name,
+                    question: pollForm.question,
+                    variants: filteredAnswers,
+                })
                 break;
             case 2:
                 try {
@@ -131,7 +147,7 @@ const PollDialog: FC<Props> = (props: Props) => {
                     setPollForm({
                         name: "",
                         question: "",
-                        answers: ["", ""],
+                        variants: ["", ""],
                     })
                     setLoading(false);
                 }
