@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techtask.pollscreation.documents.Poll;
-import com.techtask.pollscreation.dto.AnswerDto;
-import com.techtask.pollscreation.dto.SimplePollDto;
-import com.techtask.pollscreation.dto.SimplePollAndVotesDto;
-import com.techtask.pollscreation.dto.VoteDto;
+import com.techtask.pollscreation.dto.*;
 import com.techtask.pollscreation.exeptions.NotFoundException;
 import com.techtask.pollscreation.repo.PollsCreationRepository;
 import com.techtask.pollscreation.services.api.PollsCreationService;
@@ -60,5 +57,4 @@ public class PollsCreationServiceMongoImpl implements PollsCreationService {
 			throw new NotFoundException(String.format("Sorry, but there is no poll with id %s!", pollId));
 		}
 	}
-
 }

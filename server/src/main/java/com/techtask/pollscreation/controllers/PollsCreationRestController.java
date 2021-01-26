@@ -20,17 +20,17 @@ import static com.techtask.pollscreation.services.api.PollsCreationApiConstants.
 public class PollsCreationRestController {
 	@Autowired
 	PollsCreationService service;
-	
+
 	@PostMapping(ADD_POLL)
 	String addPoll(@RequestBody @Valid SimplePollDto pollDto) {
 		return service.addPoll(pollDto);
 	}
-	
+
 	@PostMapping(ADD_VOTE)
 	SimplePollAndVotesDto vote(@RequestBody @Valid VoteDto voteDto) {
 		return service.addVote(voteDto);
 	}
-	
+
 	@GetMapping(GET_POLL)
 	SimplePollAndVotesDto getPoll(@RequestParam(name = "id") String id) {
 		return service.getPoll(id);
