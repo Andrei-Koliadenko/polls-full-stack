@@ -19,6 +19,7 @@ const DisplayPoll: FC = () => {
         intervalId = setInterval(poller, 2000);
         getData();
 
+
         function poller() {
             if (!subscription || subscription.closed) {
                 getData();
