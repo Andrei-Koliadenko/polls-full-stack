@@ -3,7 +3,7 @@ import {servicePolls} from "../../config/server-config";
 import {Subscription} from "rxjs";
 import SimplePollAndVotes from "../../models/SimplePollAndVotes";
 import {useParams} from "react-router";
-import VoteCard from "../Cards/VoteCard";
+import VoteCard from "../cards/VoteCard";
 
 interface RouteParams {
     id: string,

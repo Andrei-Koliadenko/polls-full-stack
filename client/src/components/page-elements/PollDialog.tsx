@@ -15,7 +15,7 @@ import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import PollName from "../forms/PollName";
 import SimplePoll from "../../models/SimplePoll";
 import PollQuestionAnswers from "../forms/PollQuestionAnswers";
-import PollCard from "../Cards/PollCard";
+import PollCard from "../cards/PollCard";
 import {servicePolls} from "../../config/server-config";
 import DisplayPollCreationResult from "./DisplayPollCreationResult";
 import CircularProgress from "@material-ui/core/CircularProgress";
