@@ -9,11 +9,11 @@
 		<version>2.4.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.tech-task</groupId>
 	<artifactId>polls-creation</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>polls-creation</name>
-	<description>Home Assignment</description>
+	<version>0.2.0</version>
+	<name>polls-full-stack</name>
 
 	<dependencies>
 		<dependency>
