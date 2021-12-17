@@ -20,15 +20,6 @@ function App() {
             </div>
         </div>
     );
-
-    // return (
-    //     <div>
-    //         <Routes>
-    //             <Route path={PATH_HOME} element={<Home/>}/>
-    //             <Route path={PATH_POLL} element={<DisplayPoll/>}/>
-    //         </Routes>
-    //     </div>
-    // )
 }
 
 export default App;
