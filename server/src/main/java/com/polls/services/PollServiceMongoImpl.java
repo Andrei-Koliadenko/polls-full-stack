@@ -1,25 +1,28 @@
-package com.techtask.pollscreation.services;
+package com.polls.services;
 
+import com.polls.model.dto.AnswerDto;
+import com.polls.model.dto.SimplePollAndVotesDto;
+import com.polls.model.dto.SimplePollDto;
+import com.polls.model.dto.VoteDto;
+import com.polls.services.api.PollServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.techtask.pollscreation.documents.Poll;
-import com.techtask.pollscreation.dto.*;
-import com.techtask.pollscreation.exeptions.NotFoundException;
-import com.techtask.pollscreation.repo.PollsCreationRepository;
-import com.techtask.pollscreation.services.api.PollsCreationService;
+import com.polls.database.model.PollDocument;
+import com.polls.exeptions.NotFoundException;
+import com.polls.database.repository.PollRepositoryMongoImpl;
 
 @Service
 @Transactional(readOnly = true)
-public class PollsCreationServiceMongoImpl implements PollsCreationService {
+public class PollServiceMongoImpl implements PollServiceApi {
 	@Autowired
-	PollsCreationRepository pollsRepo;
+	PollRepositoryMongoImpl pollsRepo;
 
 	@Override
 	@Transactional
 	public String addPoll(SimplePollDto pollDto) {
-		Poll poll = new Poll(pollDto);
+		PollDocument poll = new PollDocument(pollDto);
 		pollsRepo.save(poll);
 		return poll.get_id();
 	}
@@ -27,7 +30,7 @@ public class PollsCreationServiceMongoImpl implements PollsCreationService {
 	@Override
 	@Transactional
 	public SimplePollAndVotesDto addVote(VoteDto vote) {
-		Poll poll = pollsRepo.findById(vote.getPollId()).orElse(null);
+		PollDocument poll = pollsRepo.findById(vote.getPollId()).orElse(null);
 		String variant = vote.getVariant();
 		if (poll != null) {
 			AnswerDto[] answers = poll.getAnswers();
@@ -50,7 +53,7 @@ public class PollsCreationServiceMongoImpl implements PollsCreationService {
 
 	@Override
 	public SimplePollAndVotesDto getPoll(String pollId) {
-		Poll poll = pollsRepo.findById(pollId).orElse(null);
+		PollDocument poll = pollsRepo.findById(pollId).orElse(null);
 		if (poll != null) {
 			return new SimplePollAndVotesDto(poll);
 		} else {

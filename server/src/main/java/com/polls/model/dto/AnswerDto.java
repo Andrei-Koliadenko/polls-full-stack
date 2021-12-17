@@ -1,4 +1,4 @@
-package com.techtask.pollscreation.dto;
+package com.polls.model.dto;
 
 public class AnswerDto {
 	String answer;

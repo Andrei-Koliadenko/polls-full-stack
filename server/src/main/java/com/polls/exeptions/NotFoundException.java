@@ -1,4 +1,4 @@
-package com.techtask.pollscreation.exeptions;
+package com.polls.exeptions;
 
 @SuppressWarnings("serial")
 public class NotFoundException extends RuntimeException {

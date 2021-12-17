@@ -1,4 +1,4 @@
-package com.techtask.pollscreation.dto;
+package com.polls.model.dto;
 
 import java.util.Arrays;
 
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
-import com.techtask.pollscreation.documents.Poll;
+import com.polls.database.model.PollDocument;
 
 public class SimplePollAndVotesDto extends PollBaseDto {
 	@NotBlank
@@ -58,7 +58,7 @@ public class SimplePollAndVotesDto extends PollBaseDto {
 
 	}
 
-	public SimplePollAndVotesDto(Poll poll) {
+	public SimplePollAndVotesDto(PollDocument poll) {
 		super(poll.getName(), poll.getQuestion());
 		this.poll_id = poll.get_id();
 		this.answers = poll.getAnswers();

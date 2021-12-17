@@ -1,13 +1,13 @@
-package com.techtask.pollscreation;
+package com.polls;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PollsCreationApplication {
+public class PollsFullStackApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PollsCreationApplication.class, args);
+		SpringApplication.run(PollsFullStackApplication.class, args);
 	}
 
 }

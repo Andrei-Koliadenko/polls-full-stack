@@ -1,10 +1,10 @@
-package com.techtask.pollscreation;
+package com.polls;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PollsCreationApplicationTests {
+class PollsFullStackApplicationTests {
 
 	@Test
 	void contextLoads() {

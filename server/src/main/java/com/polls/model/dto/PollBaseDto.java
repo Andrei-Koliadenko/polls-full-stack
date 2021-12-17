@@ -1,4 +1,4 @@
-package com.techtask.pollscreation.dto;
+package com.polls.model.dto;
 
 import javax.validation.constraints.NotBlank;
 

@@ -1,4 +1,4 @@
-package com.techtask.pollscreation.documents;
+package com.polls.database.model;
 
 import java.util.Arrays;
 
@@ -6,15 +6,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
+import com.polls.model.dto.AnswerDto;
+import com.polls.model.dto.SimplePollDto;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.techtask.pollscreation.dto.AnswerDto;
-import com.techtask.pollscreation.dto.SimplePollDto;
-
 @Document(collection = "polls")
-public class Poll {
+public class PollDocument {
 	@Id
 	String _id;
 	@NotBlank
@@ -72,8 +71,8 @@ public class Poll {
 				+ Arrays.toString(answers) + ", totalVotes=" + totalVotes + "]";
 	}
 
-	public Poll(String _id, @NotBlank String name, @NotBlank String question, @NotNull AnswerDto[] answers,
-			@PositiveOrZero int totalVotes) {
+	public PollDocument(String _id, @NotBlank String name, @NotBlank String question, @NotNull AnswerDto[] answers,
+						@PositiveOrZero int totalVotes) {
 		super();
 		this._id = _id;
 		this.name = name;
@@ -82,11 +81,11 @@ public class Poll {
 		this.totalVotes = totalVotes;
 	}
 
-	public Poll() {
+	public PollDocument() {
 
 	}
 
-	public Poll(SimplePollDto poll) {
+	public PollDocument(SimplePollDto poll) {
 		this._id = new ObjectId().toHexString();
 		this.name = poll.getName();
 		this.question = poll.getQuestion();

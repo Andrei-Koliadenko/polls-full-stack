@@ -1,4 +1,4 @@
-package com.techtask.pollscreation.exeptions;
+package com.polls.exeptions;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
