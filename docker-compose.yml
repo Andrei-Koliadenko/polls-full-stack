@@ -1,0 +1,14 @@
+version: '3.8'
+services: 
+  mongodb:
+    container_name: mongodb
+    image: mongo:5.0
+    logging: 
+      driver: json-file
+      options: 
+        max-file: "10"
+        max-size: 200k
+    network_mode: bridge
+    ports: 
+      - "27017-27019:27017-27019"
+    restart: unless-stopped
