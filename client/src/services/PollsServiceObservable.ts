@@ -4,6 +4,6 @@ import SimplePollAndVotes from "../models/SimplePollAndVotes";
 
 export default interface PollsServiceObservable {
     createSimplePoll(poll: SimplePoll): Promise<any>;
-    
-    getSimplePoll(pollId: string): Observable<SimplePollAndVotes>;
+
+    getSimplePoll(pollId: string | undefined): Observable<SimplePollAndVotes>;
 }

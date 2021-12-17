@@ -29,7 +29,7 @@ export default class PollsServiceObservableRestImpl implements PollsServiceObser
         return Axios.post<Poll>(this.url + '/create', poll).toPromise();
     }
 
-    getSimplePoll(pollId: string): Observable<SimplePollAndVotes> {
+    getSimplePoll(pollId: string | undefined): Observable<SimplePollAndVotes> {
         return Axios.get<SimplePollAndVotes>(this.url, {
             params: {
                 id: pollId
