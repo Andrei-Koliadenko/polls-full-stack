@@ -6,7 +6,7 @@ import {useParams} from "react-router";
 import VoteCard from "../cards/VoteCard";
 
 interface RouteParams {
-    id: string,
+    [key: string]: string | undefined,
 }
 
 const DisplayPoll: FC = () => {
