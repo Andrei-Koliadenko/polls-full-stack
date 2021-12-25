@@ -19,13 +19,11 @@ public class TestUtils {
 
         AnswerOptionDto firstOption = AnswerOptionDto
                 .builder()
-                .id(ObjectId.get().toString())
                 .answer("first option" + suffix)
                 .votesCount(suffix)
                 .build();
         AnswerOptionDto secondOption = AnswerOptionDto
                 .builder()
-                .id(ObjectId.get().toString())
                 .answer("second option" + suffix)
                 .votesCount(suffix + 1)
                 .build();
@@ -37,7 +35,6 @@ public class TestUtils {
                 .build();
 
         return PollDto.builder()
-                .id(ObjectId.get().toString())
                 .pollName("testPoll" + suffix)
                 .question(question)
                 .build();
