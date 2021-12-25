@@ -1,101 +1,26 @@
 package com.polls.database.model;
 
-import java.util.Arrays;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
-
-import com.polls.model.dto.AnswerDto;
-import com.polls.model.dto.SimplePollDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "polls")
 public class PollDocument {
-	@Id
-	String _id;
-	@NotBlank
-	String name;
-	@NotBlank
-	String question;
-	@NotNull
-	AnswerDto[] answers;
-	@PositiveOrZero
-	int totalVotes;
-
-	public String get_id() {
-		return _id;
-	}
-
-	public void set_id(String _id) {
-		this._id = _id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(String question) {
-		this.question = question;
-	}
-
-	public AnswerDto[] getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(AnswerDto[] answers) {
-		this.answers = answers;
-	}
-
-	public int getTotalVotes() {
-		return totalVotes;
-	}
-
-	public void setTotalVotes(int totalVotes) {
-		this.totalVotes = totalVotes;
-	}
-
-	@Override
-	public String toString() {
-		return "Poll [_id=" + _id + ", name=" + name + ", question=" + question + ", answers="
-				+ Arrays.toString(answers) + ", totalVotes=" + totalVotes + "]";
-	}
-
-	public PollDocument(String _id, @NotBlank String name, @NotBlank String question, @NotNull AnswerDto[] answers,
-						@PositiveOrZero int totalVotes) {
-		super();
-		this._id = _id;
-		this.name = name;
-		this.question = question;
-		this.answers = answers;
-		this.totalVotes = totalVotes;
-	}
-
-	public PollDocument() {
-
-	}
-
-	public PollDocument(SimplePollDto poll) {
-		this._id = new ObjectId().toHexString();
-		this.name = poll.getName();
-		this.question = poll.getQuestion();
-		String[] variants = poll.getVariants();
-		this.answers = new AnswerDto[variants.length];
-		for (int i = 0; i < variants.length; i++) {
-			AnswerDto answerDto = new AnswerDto(variants[i], 0);
-			this.answers[i] = answerDto;
-		}
-		this.totalVotes = 0;
-	}
-
+    @Id
+    private ObjectId id;
+    @NotBlank
+    private String pollName;
+    @NotNull
+    private QuestionDocument question;
 }
