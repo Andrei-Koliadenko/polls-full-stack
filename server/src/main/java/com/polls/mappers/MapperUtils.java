@@ -16,7 +16,7 @@ public class MapperUtils {
     public ObjectId asObjectId(String id) {
         return Optional.ofNullable(id)
                 .map(ObjectId::new)
-                .orElse(null);
+                .orElseGet(ObjectId::new);
     }
 
     public Integer toTotalVotes(List<AnswerOptionDocument> answers) {
