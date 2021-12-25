@@ -25,7 +25,7 @@ public class PollRestController {
     }
 
     @PostMapping(PollApiPath.ADD_VOTE)
-    PollDto vote(@RequestBody @Valid VoteDto vote, @PathVariable(name = "pollId") String pollId) {
+    PollDto vote(@RequestBody @Valid VoteDto vote, @PathVariable String pollId) {
         return service.addVote(pollId, vote);
     }
 
