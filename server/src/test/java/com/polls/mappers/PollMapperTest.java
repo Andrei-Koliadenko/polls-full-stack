@@ -7,13 +7,26 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class PollMapperTest {
     @Autowired
     private PollMapper mapper;
+
+    @Test
+    public void mapToPollDocumentWithInvalidId_ShouldBeException() {
+        PollDto pollDto = TestUtils.getRandomPollDto();
+        pollDto.setId("invalidId");
+
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> mapper.toPollDocument(pollDto));
+
+        String expectedMessage = "invalid hexadecimal representation of an ObjectId";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 
     @Test
     public void mapToPollDocument_ShouldBeMapped() {
