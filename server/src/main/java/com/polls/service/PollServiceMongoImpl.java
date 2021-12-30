@@ -23,7 +23,7 @@ public class PollServiceMongoImpl implements PollServiceApi {
 	@Transactional
 	public String addPoll(PollDto pollDto) {
 		PollDocument poll = mapper.toPollDocument(pollDto);
-		return pollsRepo.save(poll).toString();
+		return pollsRepo.save(poll).getId().toString();
 	}
 
 	@Override
