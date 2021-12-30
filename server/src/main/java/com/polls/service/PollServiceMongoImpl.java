@@ -39,6 +39,6 @@ public class PollServiceMongoImpl implements PollServiceApi {
 	@Override
 	@Transactional
 	public PollDto addVote(String pollId, VoteDto vote) {
-		throw new UnsupportedOperationException("Not yet implemented");
+		return mapper.toPollDto(pollsRepo.addVote(pollId, vote));
 	}
 }
