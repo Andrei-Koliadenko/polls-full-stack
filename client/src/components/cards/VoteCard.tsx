@@ -1,8 +1,8 @@
 import React, {FC, Fragment} from "react";
-import SimplePollAndVotes from "../../models/SimplePollAndVotes";
+import PollDto from "../../models/PollDto";
 
 type Props = {
-    poll: SimplePollAndVotes | undefined
+    poll: PollDto | undefined
 }
 
 const VoteCard: FC<Props> = (props: Props) => {
