@@ -34,7 +34,7 @@ public class PollMapperTest {
         PollDocument pollDocument = mapper.toPollDocument(pollDto);
 
         assertAll("All fields should be mapped",
-                () -> assertNotNull(pollDocument.getId()),
+                () -> assertNull(pollDocument.getId()),
 
                 () -> assertEquals(pollDto.getPollName(), pollDocument.getPollName()),
 
@@ -45,16 +45,14 @@ public class PollMapperTest {
                 () -> assertEquals(pollDto.getQuestion().getAnswers().get(0).getAnswer(),
                         pollDocument.getQuestion().getAnswers().get(0).getAnswer()),
 
-                () -> assertEquals(pollDto.getQuestion().getAnswers().get(0).getVotesCount(),
-                        pollDocument.getQuestion().getAnswers().get(0).getVotesCount()),
+                () -> assertEquals(0, pollDocument.getQuestion().getAnswers().get(0).getVotesCount()),
 
                 () -> assertNotNull(pollDocument.getQuestion().getAnswers().get(1).getId()),
 
                 () -> assertEquals(pollDto.getQuestion().getAnswers().get(1).getAnswer(),
                         pollDocument.getQuestion().getAnswers().get(1).getAnswer()),
 
-                () -> assertEquals(pollDto.getQuestion().getAnswers().get(1).getVotesCount(),
-                        pollDocument.getQuestion().getAnswers().get(1).getVotesCount())
+                () -> assertEquals(0, pollDocument.getQuestion().getAnswers().get(1).getVotesCount())
         );
     }
 
