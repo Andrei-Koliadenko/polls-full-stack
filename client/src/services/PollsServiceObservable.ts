@@ -1,9 +1,9 @@
-import SimplePoll from "../models/SimplePoll";
 import {Observable} from "rxjs";
-import SimplePollAndVotes from "../models/SimplePollAndVotes";
+import InitialPoll from "../models/InitialPoll";
+import PollDto from "../models/PollDto";
 
 export default interface PollsServiceObservable {
-    createSimplePoll(poll: SimplePoll): Promise<any>;
+    createSimplePoll(poll: InitialPoll): Promise<any>;
 
-    getSimplePoll(pollId: string | undefined): Observable<SimplePollAndVotes>;
+    getSimplePoll(pollId: string | undefined): Observable<PollDto>;
 }
