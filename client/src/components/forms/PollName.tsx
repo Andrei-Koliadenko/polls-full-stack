@@ -1,11 +1,11 @@
 import React, {ChangeEvent, FC} from "react";
 import {TextField} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import SimplePoll from "../../models/SimplePoll";
+import InitialPoll from "../../models/InitialPoll";
 
 type Props = {
-    pollForm: SimplePoll;
-    setPollForm: (poll: SimplePoll) => void;
+    pollForm: InitialPoll;
+    setPollForm: (poll: InitialPoll) => void;
     error: boolean,
     pollNameErrorMessage: string,
 }
@@ -19,14 +19,13 @@ const PollName: FC<Props> = (props: Props) => {
                     label="Poll name"
                     helperText={props.pollNameErrorMessage}
                     error={props.error}
-                    value={props.pollForm.name}
+                    value={props.pollForm.pollName}
                     variant="outlined"
                     required
                     fullWidth
                     onChange={(event: ChangeEvent<HTMLInputElement>) => props.setPollForm({
-                        name: event.target.value,
+                        pollName: event.target.value,
                         question: props.pollForm.question,
-                        variants: props.pollForm.variants,
                     })}
                     inputProps={{style: {fontSize: 20}}}
                     InputLabelProps={{style: {fontSize: 20}}}
