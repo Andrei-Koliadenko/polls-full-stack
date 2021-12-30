@@ -13,12 +13,12 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Stepper from "@material-ui/core/Stepper";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import PollName from "../forms/PollName";
-import SimplePoll from "../../models/SimplePoll";
 import PollQuestionAnswers from "../forms/PollQuestionAnswers";
 import PollCard from "../cards/PollCard";
 import {servicePolls} from "../../config/server-config";
 import DisplayPollCreationResult from "./DisplayPollCreationResult";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import InitialPoll from "../../models/InitialPoll";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -62,12 +62,15 @@ const PollDialog: FC<Props> = (props: Props) => {
     const [pollCreationResultMessage, setPollCreationResultMessage] = useState<string>("");
     const steps = getSteps();
 
-    const [pollForm, setPollForm] = useState<SimplePoll>({
-        name: "",
-        question: "",
-        variants: ["", ""]
+    const [pollForm, setPollForm] = useState<InitialPoll>({
+        pollName: "",
+        question: {
+            question: "",
+            answers: [{answer: ""}, {answer: ""}],
+        }
     })
-    const filteredAnswers: string[] = pollForm.variants.filter(Boolean);
+
+    const filteredAnswers: { answer: string }[] = pollForm.question.answers.filter(answerCandidate => answerCandidate.answer);
 
     function getStepContent(step: number) {
         switch (step) {
@@ -90,30 +93,30 @@ const PollDialog: FC<Props> = (props: Props) => {
     }
 
     useEffect(() => {
-        if (pollForm.name.length !== 0) {
+        if (pollForm.pollName.length !== 0) {
             setPollNameErrorMessage("")
             setPollNameError(false)
         }
-        if (pollForm.question.length !== 0) {
+        if (pollForm.question.question.length !== 0) {
             setPollQuestionAnswersErrorMessage("")
             setPollQuestionAnswersError(false)
         }
         if (filteredAnswers.length >= 2) {
             setNotEnoughAnswersMessage("");
         }
-    }, [pollForm.name.length, pollForm.question.length, filteredAnswers.length])
+    }, [pollForm.pollName.length, pollForm.question.question.length, filteredAnswers.length])
 
     const handleNext = async () => {
         switch (activeStep) {
             case 0:
-                if (pollForm.name.length === 0) {
+                if (pollForm.pollName.length === 0) {
                     setPollNameErrorMessage("⚠ Name is a required field")
                     setPollNameError(true)
                     return;
                 }
                 break;
             case 1:
-                if (pollForm.question.length === 0) {
+                if (pollForm.question.question.length === 0) {
                     setPollQuestionAnswersErrorMessage("⚠ Question is a required field")
                     setPollQuestionAnswersError(true)
                     return;
@@ -123,9 +126,8 @@ const PollDialog: FC<Props> = (props: Props) => {
                     return;
                 }
                 setPollForm({
-                    name: pollForm.name,
+                    pollName: pollForm.pollName,
                     question: pollForm.question,
-                    variants: filteredAnswers,
                 })
                 break;
             case 2:
@@ -141,12 +143,10 @@ const PollDialog: FC<Props> = (props: Props) => {
                 } catch (error) {
                     setPollCreationResultMessage("Error! Poll wasn't created. Please try again later");
                     break;
-                    // eslint-disable-next-line no-unreachable
                 } finally {
                     setPollForm({
-                        name: "",
-                        question: "",
-                        variants: ["", ""],
+                        pollName: "",
+                        question: {question: "", answers: [{answer: ""}, {answer: ""}]}
                     })
                     setLoading(false);
                 }

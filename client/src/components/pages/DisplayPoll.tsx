@@ -1,16 +1,16 @@
 import React, {FC, useEffect, useState} from "react";
 import {servicePolls} from "../../config/server-config";
 import {Subscription} from "rxjs";
-import SimplePollAndVotes from "../../models/SimplePollAndVotes";
 import {useParams} from "react-router";
 import VoteCard from "../cards/VoteCard";
+import PollDto from "../../models/PollDto";
 
 interface RouteParams {
     [key: string]: string | undefined,
 }
 
 const DisplayPoll: FC = () => {
-    const [poll, setPoll] = useState<SimplePollAndVotes>();
+    const [poll, setPoll] = useState<PollDto>();
     const {id} = useParams<RouteParams>();
 
     useEffect(() => {
