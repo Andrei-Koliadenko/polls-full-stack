@@ -1,7 +1,6 @@
 package com.polls.exeptions;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,10 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
+@Log4j2
 public class GlobalExceptionsHandler {
-
-	private static Logger LOG = LoggerFactory.getLogger(GlobalExceptionsHandler.class);
-
 	@ExceptionHandler(ConstraintViolationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
@@ -53,7 +50,7 @@ public class GlobalExceptionsHandler {
 	}
 	
 	private String processingException(Exception e) {
-		LOG.error(e.getMessage());
+		log.error(e.getMessage());
 		return e.getLocalizedMessage();
 	}
 }
