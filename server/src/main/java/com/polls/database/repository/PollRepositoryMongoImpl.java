@@ -1,10 +1,9 @@
 package com.polls.database.repository;
 
+import com.polls.database.model.PollDocument;
 import com.polls.database.operations.PollMongoOperations;
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
-import com.polls.database.model.PollDocument;
-
-public interface PollRepositoryMongoImpl extends MongoRepository<PollDocument, ObjectId>, PollMongoOperations  {
+public interface PollRepositoryMongoImpl extends ReactiveMongoRepository<PollDocument, ObjectId>, PollMongoOperations  {
 }

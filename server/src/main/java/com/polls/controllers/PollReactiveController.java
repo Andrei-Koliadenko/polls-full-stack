@@ -5,32 +5,37 @@ import com.polls.model.dto.poll.PollDto;
 import com.polls.model.dto.vote.VoteDto;
 import com.polls.service.api.PollServiceApi;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("poll")
 @CrossOrigin
 @Validated
 @Valid
 @RequiredArgsConstructor
-public class PollRestController {
+public class PollReactiveController {
     private final PollServiceApi service;
 
     @PostMapping(PollApiPath.ADD_POLL)
-    String addPoll(@RequestBody @Valid PollDto poll) {
+    @ResponseBody
+    Mono<String> addPoll(@RequestBody @Valid PollDto poll) {
         return service.addPoll(poll);
     }
 
     @PostMapping(PollApiPath.ADD_VOTE)
-    PollDto vote(@RequestBody @Valid VoteDto vote, @PathVariable String pollId) {
+    @ResponseBody
+    Mono<PollDto> vote(@RequestBody @Valid VoteDto vote, @PathVariable String pollId) {
         return service.addVote(pollId, vote);
     }
 
     @GetMapping(PollApiPath.GET_POLL)
-    PollDto getPoll(@PathVariable(name = "id") String id) {
+    @ResponseBody
+    Mono<PollDto> getPoll(@PathVariable(name = "id") String id) {
         return service.getPoll(id);
     }
 }

@@ -2,11 +2,12 @@ package com.polls.service.api;
 
 import com.polls.model.dto.poll.PollDto;
 import com.polls.model.dto.vote.VoteDto;
+import reactor.core.publisher.Mono;
 
 public interface PollServiceApi {
-    String addPoll(PollDto poll);
+    Mono<String> addPoll(PollDto poll);
 
-    PollDto getPoll(String pollId);
+    Mono<PollDto> getPoll(String pollId);
 
-    PollDto addVote(String pollId, VoteDto vote);
+    Mono<PollDto> addVote(String pollId, VoteDto vote);
 }
