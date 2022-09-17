@@ -3,7 +3,7 @@ import InitialPoll from "../models/InitialPoll";
 import PollDto from "../models/PollDto";
 
 export default interface PollsServiceObservable {
-    createSimplePoll(poll: InitialPoll): Promise<any>;
+    createPoll(poll: InitialPoll): Observable<string>;
 
-    getSimplePoll(pollId: string | undefined): Observable<PollDto>;
+    getPoll(pollId: string | undefined): Observable<PollDto>;
 }

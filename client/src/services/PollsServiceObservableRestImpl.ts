@@ -24,11 +24,17 @@ export default class PollsServiceObservableRestImpl implements PollsServiceObser
 
     }
 
-    createSimplePoll(poll: InitialPoll): Promise<any> {
-        return Axios.post<PollDto>(this.url + '/create', poll).toPromise();
+    createPoll(poll: InitialPoll): Observable<string> {
+        return Axios.post<string>(this.url + '/create', poll)
+            .pipe(
+                map(response => response.data),
+                catchError(err => {
+                    return throwError(handleError(err));
+                })
+            );
     }
 
-    getSimplePoll(pollId: string | undefined): Observable<PollDto> {
+    getPoll(pollId: string | undefined): Observable<PollDto> {
         return Axios.get<PollDto>(this.url + "/" + pollId)
             .pipe(
                 map(response => response.data),
