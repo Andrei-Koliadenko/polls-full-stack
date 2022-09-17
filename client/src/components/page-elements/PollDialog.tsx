@@ -19,6 +19,7 @@ import {servicePolls} from "../../config/server-config";
 import DisplayPollCreationResult from "./DisplayPollCreationResult";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import InitialPoll from "../../models/InitialPoll";
+import {lastValueFrom} from "rxjs";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -133,10 +134,8 @@ const PollDialog: FC<Props> = (props: Props) => {
             case 2:
                 try {
                     setLoading(true);
-                    const response = await servicePolls.createSimplePoll(pollForm);
-                    console.log(response.data);
-                    const pollId: string = response.data;
-                    const pollUrl: string = "localhost:3000/poll/" + pollId;
+                    const response = await lastValueFrom(servicePolls.createPoll(pollForm));
+                    const pollUrl: string = "localhost:3000/poll/" + response;
                     const message: string = "Your link to the poll: " + pollUrl;
                     setPollCreationResultMessage(message);
                     break;
