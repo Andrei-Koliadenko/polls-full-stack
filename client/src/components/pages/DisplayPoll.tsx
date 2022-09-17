@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from "react";
 import {servicePolls} from "../../config/server-config";
-import {Subscription} from "rxjs";
+import {EMPTY, Subscription} from "rxjs";
 import {useParams} from "react-router";
 import VoteCard from "../cards/VoteCard";
 import PollDto from "../../models/PollDto";
@@ -25,25 +25,30 @@ const DisplayPoll: FC = () => {
             }
         }
 
-        function getData() {
-            subscription = servicePolls.getSimplePoll(id).subscribe(data => {
-                setPoll(data)
-                console.log(data)
-            }, error => console.log(error));
+        function getData(): void {
+            servicePolls.getPoll(id)
+                .pipe(data => {
+                    data.subscribe(poll => setPoll(poll));
+                    return EMPTY;
+                })
         }
 
-        return () => {
-            if (subscription && !subscription.closed) {
-                subscription.unsubscribe();
-            }
-            if (intervalId) {
-                clearInterval(intervalId)
+            return () => {
+                if (subscription && !subscription.closed) {
+                    subscription.unsubscribe();
+                }
+                if (intervalId) {
+                    clearInterval(intervalId)
+                }
             }
         }
-    }, [id])
 
-    return <React.Fragment>
-        <VoteCard poll={poll}/>
-    </React.Fragment>
-}
-export default DisplayPoll
+    ,
+        [id]
+    )
+
+        return <React.Fragment>
+            <VoteCard poll={poll}/>
+        </React.Fragment>
+    }
+    export default DisplayPoll
