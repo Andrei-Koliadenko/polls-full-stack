@@ -103,7 +103,7 @@ const Home: FC = () => {
                 style={{
                     width: image.width,
                 }}
-                onClick={()=> setCreatePollDialog(true)}
+                onClick={() => setCreatePollDialog(true)}
             >
           <span
               className={classes.imageSrc}
@@ -127,7 +127,7 @@ const Home: FC = () => {
         ))}
 
         {openCreatePollDialog &&
-        <PollDialog openLoginFormDialog={openCreatePollDialog} setOpenLoginFormDialog={setCreatePollDialog}/>}
+            <PollDialog openLoginFormDialog={openCreatePollDialog} setOpenLoginFormDialog={setCreatePollDialog}/>}
     </div>)
 }
 export default Home

@@ -1,6 +1,6 @@
 interface InitialQuestion {
     question: string;
-    answers: {answer: string}[];
+    answers: { answer: string }[];
 }
 
 export default InitialQuestion

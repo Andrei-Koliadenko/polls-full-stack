@@ -27,7 +27,7 @@ const PollQuestionAnswers: FC<Props> = (props: Props) => {
     const classes = useStyles();
 
     function getPollAnswers(): JSX.Element[] {
-        return props.pollForm.question.answers.map((item: {answer: string}, index: number, answers: {answer: string}[]) => {
+        return props.pollForm.question.answers.map((item: { answer: string }, index: number, answers: { answer: string }[]) => {
             const incrementedIndex = index + 1;
 
             return <TextField
@@ -86,9 +86,9 @@ const PollQuestionAnswers: FC<Props> = (props: Props) => {
                 />
                 <br/>
                 {props.notEnoughAnswersMessage &&
-                <Typography component={'span'} variant={'subtitle1'} color="error" className={classes.margin}>
-                    {props.notEnoughAnswersMessage}
-                </Typography>}
+                    <Typography component={'span'} variant={'subtitle1'} color="error" className={classes.margin}>
+                        {props.notEnoughAnswersMessage}
+                    </Typography>}
                 {getPollAnswers()}
                 <Button
                     variant="contained"

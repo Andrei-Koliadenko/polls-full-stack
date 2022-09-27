@@ -14,24 +14,24 @@ const DisplayPoll: FC = () => {
     const {id} = useParams<RouteParams>();
 
     useEffect(() => {
-        let intervalId: any;
-        let subscription: Subscription;
-        intervalId = setInterval(poller, 2000);
-        getData();
+            let intervalId: any;
+            let subscription: Subscription;
+            intervalId = setInterval(poller, 2000);
+            getData();
 
-        function poller() {
-            if (!subscription || subscription.closed) {
-                getData();
+            function poller() {
+                if (!subscription || subscription.closed) {
+                    getData();
+                }
             }
-        }
 
-        function getData(): void {
-            servicePolls.getPoll(id)
-                .pipe(data => {
-                    data.subscribe(poll => setPoll(poll));
-                    return EMPTY;
-                })
-        }
+            function getData(): void {
+                servicePolls.getPoll(id)
+                    .pipe(data => {
+                        data.subscribe(poll => setPoll(poll));
+                        return EMPTY;
+                    })
+            }
 
             return () => {
                 if (subscription && !subscription.closed) {
@@ -41,14 +41,12 @@ const DisplayPoll: FC = () => {
                     clearInterval(intervalId)
                 }
             }
-        }
-
-    ,
+        },
         [id]
     )
 
-        return <React.Fragment>
-            <VoteCard poll={poll}/>
-        </React.Fragment>
-    }
-    export default DisplayPoll
+    return <React.Fragment>
+        <VoteCard poll={poll}/>
+    </React.Fragment>
+}
+export default DisplayPoll
