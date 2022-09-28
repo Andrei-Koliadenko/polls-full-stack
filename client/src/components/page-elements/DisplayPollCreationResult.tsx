@@ -1,15 +1,14 @@
 import React, {FC, Fragment} from "react";
-import {Typography} from "@material-ui/core";
+import PollCreationResult from "../../models/PollCreationResult";
 
 type Props = {
-    message: string,
+    pollCreationResult: PollCreationResult,
 }
 
 const DisplayPollCreationResult: FC<Props> = (props: Props) => {
     return <Fragment>
-        <Typography variant="subtitle1" component={'span'}>
-            {props.message}
-        </Typography>
+        <a href={props.pollCreationResult.pollLink}> {props.pollCreationResult.message} </a>
     </Fragment>
 }
+
 export default DisplayPollCreationResult

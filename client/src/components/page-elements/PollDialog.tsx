@@ -20,6 +20,7 @@ import DisplayPollCreationResult from "./DisplayPollCreationResult";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import InitialPoll from "../../models/InitialPoll";
 import {lastValueFrom} from "rxjs";
+import PollCreationResult from "../../models/PollCreationResult";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -60,7 +61,10 @@ const PollDialog: FC<Props> = (props: Props) => {
     const [pollQuestionAnswersErrorMessage, setPollQuestionAnswersErrorMessage] = useState<string>("");
     const [notEnoughAnswersMessage, setNotEnoughAnswersMessage] = useState<string>("");
     const [pollQuestionAnswersError, setPollQuestionAnswersError] = useState<boolean>(false);
-    const [pollCreationResultMessage, setPollCreationResultMessage] = useState<string>("");
+    const [pollCreationResultMessage, setPollCreationResultMessage] = useState<PollCreationResult>({
+        message: "",
+        pollLink: "",
+    });
     const steps = getSteps();
 
     const [pollForm, setPollForm] = useState<InitialPoll>({
@@ -87,7 +91,7 @@ const PollDialog: FC<Props> = (props: Props) => {
             case 2:
                 return <PollCard poll={pollForm}/>
             case 3:
-                return <DisplayPollCreationResult message={pollCreationResultMessage}/>
+                return <DisplayPollCreationResult pollCreationResult = {pollCreationResultMessage}/>
             default:
                 return 'Unknown step';
         }
@@ -134,13 +138,18 @@ const PollDialog: FC<Props> = (props: Props) => {
             case 2:
                 try {
                     setLoading(true);
-                    const response = await lastValueFrom(servicePolls.createPoll(pollForm));
-                    const pollUrl: string = "localhost:3000/poll/" + response;
-                    const message: string = "Your link to the poll: " + pollUrl;
-                    setPollCreationResultMessage(message);
+                    const response: string = await lastValueFrom(servicePolls.createPoll(pollForm));
+                    const pollUrl: string = "poll/" + response;
+                    setPollCreationResultMessage({
+                        message: "Your link to the poll",
+                        pollLink: pollUrl
+                    })
                     break;
                 } catch (error) {
-                    setPollCreationResultMessage("Error! Poll wasn't created. Please try again later");
+                    setPollCreationResultMessage({
+                        message: "Error! Poll wasn't created. Please try again later",
+                        pollLink: ""
+                    });
                     break;
                 } finally {
                     setPollForm({
