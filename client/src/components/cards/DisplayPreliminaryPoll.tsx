@@ -5,10 +5,10 @@ type Props = {
     poll: InitialPoll
 }
 
-const PollCard: FC<Props> = (props: Props) => {
+const DisplayPreliminaryPoll: FC<Props> = (props: Props) => {
     return (<Fragment>
         {JSON.stringify(props.poll)}
     </Fragment>)
 }
 
-export default PollCard
+export default DisplayPreliminaryPoll
