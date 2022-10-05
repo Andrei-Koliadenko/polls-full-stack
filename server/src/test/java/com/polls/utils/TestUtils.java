@@ -36,7 +36,7 @@ public class TestUtils {
 
         return PollDto.builder()
                 .pollName("testPoll" + suffix)
-                .question(question)
+                .questions(List.of(question))
                 .build();
     }
 
@@ -65,7 +65,7 @@ public class TestUtils {
         return PollDocument.builder()
                 .id(ObjectId.get())
                 .pollName("testPoll" + suffix)
-                .question(question)
+                .questions(List.of(question))
                 .build();
     }
 }

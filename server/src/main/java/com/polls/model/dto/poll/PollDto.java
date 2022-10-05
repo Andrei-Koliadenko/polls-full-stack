@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.Null;
+import java.util.List;
 
 @Data
 @Builder
@@ -11,5 +12,5 @@ public class PollDto {
     @Null
     private String id;
     private String pollName;
-    private QuestionDto question;
+    private List<QuestionDto> questions;
 }

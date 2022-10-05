@@ -38,21 +38,25 @@ public class PollMapperTest {
 
                 () -> assertEquals(pollDto.getPollName(), pollDocument.getPollName()),
 
-                () -> assertEquals(pollDto.getQuestion().getQuestion(), pollDocument.getQuestion().getQuestion()),
+                () -> assertNotNull(pollDocument.getQuestions()),
 
-                () -> assertNotNull(pollDocument.getQuestion().getAnswers().get(0).getId()),
+                () -> assertEquals(1, pollDocument.getQuestions().size()),
 
-                () -> assertEquals(pollDto.getQuestion().getAnswers().get(0).getAnswer(),
-                        pollDocument.getQuestion().getAnswers().get(0).getAnswer()),
+                () -> assertEquals(pollDto.getQuestions().get(0).getQuestion(), pollDocument.getQuestions().get(0).getQuestion()),
 
-                () -> assertEquals(0, pollDocument.getQuestion().getAnswers().get(0).getVotesCount()),
+                () -> assertNotNull(pollDocument.getQuestions().get(0).getAnswers().get(0).getId()),
 
-                () -> assertNotNull(pollDocument.getQuestion().getAnswers().get(1).getId()),
+                () -> assertEquals(pollDto.getQuestions().get(0).getAnswers().get(0).getAnswer(),
+                        pollDocument.getQuestions().get(0).getAnswers().get(0).getAnswer()),
 
-                () -> assertEquals(pollDto.getQuestion().getAnswers().get(1).getAnswer(),
-                        pollDocument.getQuestion().getAnswers().get(1).getAnswer()),
+                () -> assertEquals(0, pollDocument.getQuestions().get(0).getAnswers().get(0).getVotesCount()),
 
-                () -> assertEquals(0, pollDocument.getQuestion().getAnswers().get(1).getVotesCount())
+                () -> assertNotNull(pollDocument.getQuestions().get(0).getAnswers().get(1).getId()),
+
+                () -> assertEquals(pollDto.getQuestions().get(0).getAnswers().get(1).getAnswer(),
+                        pollDocument.getQuestions().get(0).getAnswers().get(1).getAnswer()),
+
+                () -> assertEquals(0, pollDocument.getQuestions().get(0).getAnswers().get(1).getVotesCount())
         );
     }
 
@@ -66,28 +70,33 @@ public class PollMapperTest {
 
                 () -> assertEquals(pollDocument.getPollName(), pollDto.getPollName()),
 
-                () -> assertEquals(pollDocument.getQuestion().getQuestion(), pollDto.getQuestion().getQuestion()),
+                () -> assertNotNull(pollDto.getQuestions()),
 
-                () -> assertEquals(pollDocument.getQuestion().getAnswers().get(0).getId().toString(),
-                        pollDto.getQuestion().getAnswers().get(0).getId()),
+                () -> assertEquals(1, pollDto.getQuestions().size()),
 
-                () -> assertEquals(pollDocument.getQuestion().getAnswers().get(0).getAnswer(),
-                        pollDto.getQuestion().getAnswers().get(0).getAnswer()),
+                () -> assertEquals(pollDocument.getQuestions().get(0).getQuestion(), pollDto.getQuestions().get(0).getQuestion()),
 
-                () -> assertEquals(pollDocument.getQuestion().getAnswers().get(0).getVotesCount(),
-                        pollDto.getQuestion().getAnswers().get(0).getVotesCount()),
+                () -> assertEquals(pollDocument.getQuestions().get(0).getAnswers().get(0).getId().toString(),
+                        pollDto.getQuestions().get(0).getAnswers().get(0).getId()),
 
-                () -> assertEquals(pollDocument.getQuestion().getAnswers().get(1).getId().toString(),
-                        pollDto.getQuestion().getAnswers().get(1).getId()),
+                () -> assertEquals(pollDocument.getQuestions().get(0).getAnswers().get(0).getAnswer(),
+                        pollDto.getQuestions().get(0).getAnswers().get(0).getAnswer()),
 
-                () -> assertEquals(pollDocument.getQuestion().getAnswers().get(1).getAnswer(),
-                        pollDto.getQuestion().getAnswers().get(1).getAnswer()),
+                () -> assertEquals(pollDocument.getQuestions().get(0).getAnswers().get(0).getVotesCount(),
+                        pollDto.getQuestions().get(0).getAnswers().get(0).getVotesCount()),
 
-                () -> assertEquals(pollDocument.getQuestion().getAnswers().get(1).getVotesCount(),
-                        pollDto.getQuestion().getAnswers().get(1).getVotesCount()),
+                () -> assertEquals(pollDocument.getQuestions().get(0).getAnswers().get(1).getId().toString(),
+                        pollDto.getQuestions().get(0).getAnswers().get(1).getId()),
 
-                () -> assertEquals(pollDocument.getQuestion().getAnswers().get(0).getVotesCount() +
-                        pollDocument.getQuestion().getAnswers().get(1).getVotesCount(), pollDto.getQuestion().getTotalVotes())
+                () -> assertEquals(pollDocument.getQuestions().get(0).getAnswers().get(1).getAnswer(),
+                        pollDto.getQuestions().get(0).getAnswers().get(1).getAnswer()),
+
+                () -> assertEquals(pollDocument.getQuestions().get(0).getAnswers().get(1).getVotesCount(),
+                        pollDto.getQuestions().get(0).getAnswers().get(1).getVotesCount()),
+
+                () -> assertEquals(pollDocument.getQuestions().get(0).getAnswers().get(0).getVotesCount() +
+                                pollDocument.getQuestions().get(0).getAnswers().get(1).getVotesCount(),
+                        pollDto.getQuestions().get(0).getTotalVotes())
         );
     }
 }
