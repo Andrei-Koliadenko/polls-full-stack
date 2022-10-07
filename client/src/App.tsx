@@ -16,7 +16,7 @@ function App() {
                     <Routes>
                         <Route path={PATH_HOME} element={<HomePage/>}/>
                         <Route path={PATH_VOTE} element={<VotePage/>}/>
-                        {/*<Route path={PATH_DEMO_POLL} element={<DemoPollPage/>}/>*/}
+                        <Route path={PATH_DEMO_POLL} element={<DemoPollPage/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>
