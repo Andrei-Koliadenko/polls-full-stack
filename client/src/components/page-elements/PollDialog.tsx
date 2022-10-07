@@ -69,13 +69,13 @@ const PollDialog: FC<Props> = (props: Props) => {
 
     const [pollForm, setPollForm] = useState<InitialPoll>({
         pollName: "",
-        question: {
+        questions: [{
             question: "",
             answers: [{answer: ""}, {answer: ""}],
-        }
+        }]
     })
 
-    const filteredAnswers: { answer: string }[] = pollForm.question.answers.filter(answerCandidate => answerCandidate.answer);
+    const filteredAnswers: { answer: string }[] = pollForm.questions[0].answers.filter(answerCandidate => answerCandidate.answer);
 
     function getStepContent(step: number) {
         switch (step) {
@@ -102,14 +102,14 @@ const PollDialog: FC<Props> = (props: Props) => {
             setPollNameErrorMessage("")
             setPollNameError(false)
         }
-        if (pollForm.question.question.length !== 0) {
+        if (pollForm.questions[0].question.length !== 0) {
             setPollQuestionAnswersErrorMessage("")
             setPollQuestionAnswersError(false)
         }
         if (filteredAnswers.length >= 2) {
             setNotEnoughAnswersMessage("");
         }
-    }, [pollForm.pollName.length, pollForm.question.question.length, filteredAnswers.length])
+    }, [pollForm.pollName.length, pollForm.questions[0].question.length, filteredAnswers.length])
 
     const handleNext = async () => {
         switch (activeStep) {
@@ -121,7 +121,7 @@ const PollDialog: FC<Props> = (props: Props) => {
                 }
                 break;
             case 1:
-                if (pollForm.question.question.length === 0) {
+                if (pollForm.questions[0].question.length === 0) {
                     setPollQuestionAnswersErrorMessage("⚠ Question is a required field")
                     setPollQuestionAnswersError(true)
                     return;
@@ -132,7 +132,7 @@ const PollDialog: FC<Props> = (props: Props) => {
                 }
                 setPollForm({
                     pollName: pollForm.pollName,
-                    question: pollForm.question,
+                    questions: pollForm.questions,
                 })
                 break;
             case 2:
@@ -154,7 +154,7 @@ const PollDialog: FC<Props> = (props: Props) => {
                 } finally {
                     setPollForm({
                         pollName: "",
-                        question: {question: "", answers: [{answer: ""}, {answer: ""}]}
+                        questions: [{question: "", answers: [{answer: ""}, {answer: ""}]}]
                     })
                     setLoading(false);
                 }

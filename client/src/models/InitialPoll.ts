@@ -2,7 +2,7 @@ import InitialQuestion from "./InitialQuestion";
 
 interface InitialPoll {
     pollName: string;
-    question: InitialQuestion;
+    questions: InitialQuestion[]
 }
 
 export default InitialPoll

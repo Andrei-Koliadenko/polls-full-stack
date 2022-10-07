@@ -27,13 +27,13 @@ const PollQuestionAnswers: FC<Props> = (props: Props) => {
     const classes = useStyles();
 
     function getPollAnswers(): JSX.Element[] {
-        return props.pollForm.question.answers.map((item: { answer: string }, index: number, answers: { answer: string }[]) => {
+        return props.pollForm.questions[0].answers.map((item: { answer: string }, index: number, answers: { answer: string }[]) => {
             const incrementedIndex = index + 1;
 
             return <TextField
                 id="poll_answer"
                 label={"Answer " + incrementedIndex}
-                value={props.pollForm.question.answers[index].answer}
+                value={props.pollForm.questions[0].answers[index].answer}
                 variant="standard"
                 required
                 fullWidth
@@ -45,7 +45,7 @@ const PollQuestionAnswers: FC<Props> = (props: Props) => {
                     answers[index] = {answer: event.target.value};
                     props.setPollForm({
                         pollName: props.pollForm.pollName,
-                        question: props.pollForm.question
+                        questions: props.pollForm.questions
                     })
                 }}
             />
@@ -54,12 +54,12 @@ const PollQuestionAnswers: FC<Props> = (props: Props) => {
     }
 
     const handleAddAnotherAnswer = () => {
-        const question: InitialQuestion = props.pollForm.question;
+        const question: InitialQuestion = props.pollForm.questions[0];
         question.answers.push({answer: ""});
 
         props.setPollForm({
             pollName: props.pollForm.pollName,
-            question: props.pollForm.question
+            questions: props.pollForm.questions
         })
     }
 
@@ -71,7 +71,7 @@ const PollQuestionAnswers: FC<Props> = (props: Props) => {
                     label="Poll question"
                     helperText={props.pollQuestionErrorMessage}
                     error={props.error}
-                    value={props.pollForm.question.question}
+                    value={props.pollForm.questions[0].question}
                     variant="outlined"
                     required
                     fullWidth
@@ -81,7 +81,7 @@ const PollQuestionAnswers: FC<Props> = (props: Props) => {
                     FormHelperTextProps={{style: {fontSize: 15}}}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => props.setPollForm({
                         pollName: props.pollForm.pollName,
-                        question: {question: event.target.value, answers: props.pollForm.question.answers}
+                        questions: [{question: event.target.value, answers: props.pollForm.questions[0].answers}]
                     })}
                 />
                 <br/>

@@ -3,7 +3,7 @@ import QuestionDto from "./QuestionDto";
 interface PollDto {
     id: string;
     pollName: string;
-    question: QuestionDto;
+    questions: QuestionDto[];
 }
 
 export default PollDto
