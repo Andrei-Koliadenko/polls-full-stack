@@ -8,6 +8,9 @@ type Props = {
 
 const DisplayPreliminaryPoll: FC<Props> = (props: Props) => {
     return <DemoPollPage poll={props.poll}/>
+    // return (<Fragment>
+    //     {JSON.stringify(props.poll)}
+    // </Fragment>)
 }
 
 export default DisplayPreliminaryPoll
