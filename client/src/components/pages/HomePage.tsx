@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-const Home: FC = () => {
+const HomePage: FC = () => {
     const [openCreatePollDialog, setCreatePollDialog] = useState<boolean>(false);
     const classes = useStyles();
 
@@ -130,4 +130,4 @@ const Home: FC = () => {
             <PollDialog openLoginFormDialog={openCreatePollDialog} setOpenLoginFormDialog={setCreatePollDialog}/>}
     </div>)
 }
-export default Home
+export default HomePage

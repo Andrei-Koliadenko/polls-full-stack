@@ -9,7 +9,7 @@ interface RouteParams {
     [key: string]: string | undefined,
 }
 
-const DisplayPoll: FC = () => {
+const VotePage: FC = () => {
     const [poll, setPoll] = useState<PollDto>();
     const {id} = useParams<RouteParams>();
 
@@ -49,4 +49,4 @@ const DisplayPoll: FC = () => {
         <VoteCard poll={poll}/>
     </React.Fragment>
 }
-export default DisplayPoll
+export default VotePage

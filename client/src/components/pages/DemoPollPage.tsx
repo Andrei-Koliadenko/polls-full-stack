@@ -5,10 +5,10 @@ type Props = {
     poll: InitialPoll
 }
 
-const DemoPoll: FC<Props> = (props: Props) => {
+const DemoPollPage: FC<Props> = (props: Props) => {
     return (<Fragment>
         {JSON.stringify(props.poll)}
     </Fragment>)
 }
 
-export default DemoPoll
+export default DemoPollPage
