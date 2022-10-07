@@ -14,7 +14,7 @@ import Stepper from "@material-ui/core/Stepper";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import PollName from "../forms/PollName";
 import PollQuestionAnswers from "../forms/PollQuestionAnswers";
-import DisplayPreliminaryPoll from "../cards/DisplayPreliminaryPoll";
+import PollBeforeSave from "../cards/PollBeforeSave";
 import {servicePolls} from "../../config/server-config";
 import DisplayPollCreationResult from "./DisplayPollCreationResult";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -89,7 +89,7 @@ const PollDialog: FC<Props> = (props: Props) => {
                                             pollQuestionErrorMessage={pollQuestionAnswersErrorMessage}
                                             notEnoughAnswersMessage={notEnoughAnswersMessage}/>;
             case 2:
-                return <DisplayPreliminaryPoll poll={pollForm}/>
+                return <PollBeforeSave poll={pollForm}/>
             case 3:
                 return <DisplayPollCreationResult pollCreationResult = {pollCreationResultMessage}/>
             default:

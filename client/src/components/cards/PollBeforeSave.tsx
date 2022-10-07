@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const DisplayPreliminaryPoll: FC<Props> = (props: Props) => {
+const PollBeforeSave: FC<Props> = (props: Props) => {
     const classes = useStyles();
 
     const handleDisplayDemoPoll = () => {
@@ -37,4 +37,4 @@ const DisplayPreliminaryPoll: FC<Props> = (props: Props) => {
     </Fragment>)
 }
 
-export default DisplayPreliminaryPoll
+export default PollBeforeSave
