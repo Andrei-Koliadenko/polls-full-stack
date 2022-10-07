@@ -1,10 +1,9 @@
 import React, {FC, Fragment} from "react";
 import InitialPoll from "../../models/InitialPoll";
-import DemoPollPage from "../pages/DemoPollPage";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import Button from "@material-ui/core/Button";
 import {createStyles, makeStyles, Theme} from "@material-ui/core";
-import InitialQuestion from "../../models/InitialQuestion";
+import {PATH_PREVIEW_POLL} from "../../config/links";
 
 type Props = {
     poll: InitialPoll
@@ -21,21 +20,19 @@ const useStyles = makeStyles((theme: Theme) =>
 const DisplayPreliminaryPoll: FC<Props> = (props: Props) => {
     const classes = useStyles();
 
-    const handleAddAnotherQuestion = () => {
-
+    const handleDisplayDemoPoll = () => {
+        window.open(PATH_PREVIEW_POLL, "_blank")?.focus();
     }
 
     return (<Fragment>
-        <DemoPollPage poll={props.poll}/>
-        <br/>
         <Button
             variant="contained"
             color="primary"
             className={classes.margin}
             startIcon={<AddBoxIcon/>}
-            onClick={handleAddAnotherQuestion}
+            onClick={handleDisplayDemoPoll}
         >
-            Add another question
+            See preview poll
         </Button>
     </Fragment>)
 }
